@@ -65,7 +65,13 @@ library FullMath {
         // Factor powers of two out of denominator
         // Compute largest power of two divisor of denominator.
         // Always >= 1.
-        uint256 twos = -denominator & denominator;
+
+        /**
+        * uint256 twos = -denominator & denominator;
+        * Change By:
+        */
+        uint256 twos = ~(denominator - 1);
+
         // Divide denominator by power of two
         assembly {
             denominator := div(denominator, twos)
